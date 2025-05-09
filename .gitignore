@@ -1,0 +1,22 @@
+
+# /.gitignore
+
+# node dependencies
+**/node_modules/
+
+# environment files
+**/.env
+ibc-xrp-pools/.env
+
+# generated reports
+repo_report.txt
+
+# editor/project files
+.DS_Store
+*.log
+
+# build artifacts (if any future build step)
+dist/
+build/
+coverage/
+

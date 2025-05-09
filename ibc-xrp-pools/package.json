@@ -1,0 +1,17 @@
+{
+  "name": "crosschain-xrp-pools",
+  "version": "1.0.0",
+  "description": "Create and seed Cosmos PoolManager pools across XRPL-EVM, provider, Osmosis and Elys testnets",
+  "main": "src/index.js",
+  "scripts": {
+    "create": "node src/index.js create",
+    "join": "node src/index.js join"
+  },
+  "dependencies": {
+    "@cosmjs/proto-signing": "^0.33.1",
+    "@cosmjs/stargate": "^0.33.1",
+    "@osmosis-labs/proto-codecs": "^5.1.0",
+    "dotenv": "^16.0.0",
+    "yargs": "^17.0.0"
+  }
+}
