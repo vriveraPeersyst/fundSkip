@@ -29,7 +29,7 @@ A simple toolkit to create and seed OSMO/XRP liquidity pools on the Osmosis test
    ```bash
    git clone <your-repo-url>
    cd <your-repo>
-````
+    ````
 
 2. **Generate a report (optional)**
 
