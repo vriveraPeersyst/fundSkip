@@ -48,11 +48,11 @@ async function createPool(chainKey, tokenA, tokenB, amounts) {
   // Initial deposit as plain objects
   const assets = [
     {
-      token: { denom: tokenA, amount: amounts[0].toString() },
+      token: { denom: tokenA, amount: "979166670000" }, // 979,166.67 OSMO in uosmo
       weight: "100"
     },
     {
-      token: { denom: tokenB, amount: amounts[1].toString() },
+      token: { denom: tokenB, amount: "100000000000000000000000" }, // 100,000 XRP in base units
       weight: "100"
     },
   ];
