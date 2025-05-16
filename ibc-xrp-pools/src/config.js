@@ -41,7 +41,10 @@ const chains = {
   },
 };
 
+const MNEMONIC = process.env.MNEMONIC;
+if (!MNEMONIC) throw new Error("🗝️ MNEMONIC is required in .env");
+
 module.exports = {
   chains,
-  PRIVATE_KEY: process.env.PRIVATE_KEY,
+  MNEMONIC,
 };

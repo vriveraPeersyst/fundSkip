@@ -1,18 +1,15 @@
 // src/clients.js
 const { SigningStargateClient, GasPrice, defaultRegistryTypes } = require("@cosmjs/stargate");
-const { Registry, DirectSecp256k1Wallet }                       = require("@cosmjs/proto-signing");
+const { Registry, DirectSecp256k1HdWallet }                     = require("@cosmjs/proto-signing");
 const {
   cosmosProtoRegistry,
   ibcProtoRegistry,
   osmosisProtoRegistry,
 } = require("@osmosis-labs/proto-codecs");
-const { chains, PRIVATE_KEY } = require("./config");
+const { chains, MNEMONIC } = require("./config");
 
-if (!PRIVATE_KEY) throw new Error("🔑 PRIVATE_KEY is required in .env");
-
-function hexToBytes(hex) {
-  return Uint8Array.from(Buffer.from(hex.replace(/^0x/, ""), "hex"));
-}
+// Ensure we have a mnemonic for HD wallet
+if (!MNEMONIC) throw new Error("🗝️ MNEMONIC is required in .env");
 
 /**
  * Create a signing client for the given chain key, merging in
@@ -20,8 +17,9 @@ function hexToBytes(hex) {
  */
 async function getClient(chainKey) {
   const { rpc, prefix, gasPrice } = chains[chainKey];
-  const keyBytes = hexToBytes(PRIVATE_KEY);
-  const wallet   = await DirectSecp256k1Wallet.fromKey(keyBytes, prefix);
+
+  // Create an HD wallet from your BIP-39 mnemonic
+  const wallet = await DirectSecp256k1HdWallet.fromMnemonic(MNEMONIC, { prefix });
 
   // Merge default Cosmos SDK types + IBC + Osmosis (GAMM & poolmanager)
   const registry = new Registry([
